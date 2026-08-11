@@ -1,0 +1,10 @@
+{
+  "name": "ai-agent-bridge",
+  "displayName": "AI Agent Bridge",
+  "author": "Carlos",
+  "main": "ai.AgentBridge",
+  "description": "Servidor WebSocket local para comunicar Serpulo con algoritmos de Python.",
+  "version": "1.0",
+  "minGameVersion": "154",
+  "java": true
+}

@@ -1,0 +1,28 @@
+# Archivos de editores temporales
+*.swp
+*.swo
+
+# Entornos y Caché de Python
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Compilación de Java y Gradle
+.gradle/
+build/
+out/
+Agent_Mod/build/
+Agent_Mod/.gradle/
+
+# Archivos pesados y binarios
+*.jar
+*.zip
+
+# Carpetas de entrenamiento local (¡vital para no saturar GitHub con modelos pesados!)
+IA_Entrenamiento/logs/
+IA_Entrenamiento/modelos/
+
+# Configuraciones locales de IDEs (opcional pero recomendado)
+.vscode/
+.idea/

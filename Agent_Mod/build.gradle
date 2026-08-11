@@ -1,0 +1,41 @@
+apply plugin: "java"
+
+// Le decimos a Java que nuestro código está en la carpeta src
+sourceSets.main.java.srcDirs = ["src"]
+
+// Le decimos de dónde descargar las librerías de Mindustry para compilar
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    // Cortamos a Jitpack. Apuntamos directamente al núcleo del juego local.
+    compileOnly files("../Mindustry/desktop/build/libs/Mindustry.jar")
+}
+
+// Configuración para que el mod compile correctamente en Java 8/17
+tasks.withType(JavaCompile) {
+    options.release.set(8)
+}
+
+jar {
+    archiveFileName = "AgentBridge.jar"
+    from("mod.hjson") // Obligamos a Gradle a empaquetar los metadatos
+
+    doLast {
+        // Obtenemos la ruta de AppData nativa de tu usuario en Windows
+        def modsDir = new File(System.getenv("APPDATA"), "Mindustry/mods")
+        modsDir.mkdirs()
+
+        copy {
+            from archiveFile
+            into modsDir
+        }
+        println "✔️ Mod compilado y transferido a: ${modsDir.getAbsolutePath()}"
+    }
+}
+
+tasks.register("deploy") {
+    dependsOn tasks.named("jar")
+}
