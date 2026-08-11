@@ -6,9 +6,9 @@ Entorno de entrenamiento y desarrollo de una IA autónoma para Mindustry. Este p
 
 El sistema se divide en tres componentes principales que trabajan en conjunto:
 
-*   ** Agente de Python (Cerebro):** Encargado de la toma de decisiones mediante algoritmos de Aprendizaje por Refuerzo (Reinforcement Learning).
-*   ** Mod Puente (Java):** Un mod personalizado que se inyecta en el servidor de Mindustry para extraer el estado del juego, enviarlo al agente y ejecutar las acciones decididas.
-*   ** Entorno Dockerizado:** Todo el ecosistema (servidor *headless*, dependencias de Java y Python) corre dentro de un contenedor ligero de Linux (Debian), lo que garantiza que el entrenamiento sea reproducible en cualquier máquina.
+*   **Agente de Python (Cerebro):** Encargado de la toma de decisiones mediante algoritmos de Aprendizaje por Refuerzo (Reinforcement Learning).
+*   **Mod Puente (Java):** Un mod personalizado que se inyecta en el servidor de Mindustry para extraer el estado del juego, enviarlo al agente y ejecutar las acciones decididas.
+*   **Entorno Dockerizado:** Todo el ecosistema (servidor *headless*, dependencias de Java y Python) corre dentro de un contenedor ligero de Linux (Debian), lo que garantiza que el entrenamiento sea reproducible en cualquier máquina.
 
 ## Requisitos Previos
 
