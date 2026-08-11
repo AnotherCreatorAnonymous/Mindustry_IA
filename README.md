@@ -1,2 +1,2 @@
 # Mindustry_IA
-Desarrollo de un agente de Inteligencia Artificial completamente autónomo para el videojuego Mindustry, basado en Aprendizaje por Refuerzo.
+Entorno de entrenamiento y desarrollo de una IA autónoma para Mindustry. Este proyecto implementa una arquitectura híbrida que conecta un servidor headless mediante un mod en Java con un agente de Python, todo orquestado y empaquetado en contenedores de Docker
