@@ -1,0 +1,224 @@
+[06-03-2026 14:06:12] [I] Server loaded. Type 'help' for help.
+[06-03-2026 14:10:43] [E] Command not found. Did you mean "host"?
+[06-03-2026 14:10:49] [I] Randomized next map to be Ancient Caldera.
+[06-03-2026 14:10:49] [I] Loading map...
+[06-03-2026 14:10:50] [I] Map loaded.
+[06-03-2026 14:10:50] [I] Opened a server on port 6567.
+[06-03-2026 14:12:02] [I] Stopped server.
+[06-03-2026 14:12:48] [I] Randomized next map to be Islands.
+[06-03-2026 14:12:48] [I] Loading map...
+[06-03-2026 14:12:48] [I] Map loaded.
+[06-03-2026 14:12:48] [I] Opened a server on port 6567.
+[06-03-2026 14:13:06] [I] Stopped server.
+[06-03-2026 14:13:11] [I] 1 mods loaded.
+[06-03-2026 14:13:11] [I] Server loaded. Type 'help' for help.
+[06-03-2026 14:13:15] [I] Randomized next map to be Ancient Caldera.
+[06-03-2026 14:13:15] [I] Loading map...
+[06-03-2026 14:13:16] [I] Map loaded.
+[06-03-2026 14:13:16] [I] 🧠 AGENT BRIDGE: Servidor RL autónomo iniciado.
+[06-03-2026 14:13:16] [I] Opened a server on port 6567.
+[06-03-2026 14:18:37] [I] Game over! Reached wave 2 with 0 players online on map Ancient Caldera.
+[06-03-2026 14:18:37] [I] Selected next map to be Triad.
+[06-03-2026 14:18:50] [E] java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:567)
+	at java.base/sun.nio.ch.Net.bind(Net.java:556)
+	at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:648)
+	at java.base/java.net.ServerSocket.bind(ServerSocket.java:388)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:274)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:167)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:70)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-03-2026 14:22:15] [E] java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:328)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:287)
+	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:330)
+	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:190)
+	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:177)
+	at java.base/java.io.BufferedReader.fill(BufferedReader.java:162)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:329)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:396)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:77)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-03-2026 14:24:10] [I] Core destroyed.
+[06-03-2026 14:24:10] [I] Game over! Reached wave 1 with 0 players online on map Triad.
+[06-03-2026 14:24:10] [I] Selected next map to be Fortress.
+[06-03-2026 14:24:17] [I] Stopped server.
+[06-03-2026 14:24:23] [I] Loading map...
+[06-03-2026 14:24:23] [E] java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:567)
+	at java.base/sun.nio.ch.Net.bind(Net.java:556)
+	at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:648)
+	at java.base/java.net.ServerSocket.bind(ServerSocket.java:388)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:274)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:167)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:70)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-03-2026 14:24:23] [I] Map loaded.
+[06-03-2026 14:24:23] [I] Opened a server on port 6567.
+[06-03-2026 14:25:49] [I] Stopped server.
+[06-03-2026 14:25:59] [I] 1 mods loaded.
+[06-03-2026 14:25:59] [I] Server loaded. Type 'help' for help.
+[06-03-2026 14:26:03] [I] Loading map...
+[06-03-2026 14:26:03] [I] Map loaded.
+[06-03-2026 14:26:03] [I] 🧠 AGENT BRIDGE: Servidor RL autónomo iniciado.
+[06-03-2026 14:26:03] [I] Opened a server on port 6567.
+[06-03-2026 14:36:00] [E] java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:328)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:287)
+	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:330)
+	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:190)
+	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:177)
+	at java.base/java.io.BufferedReader.fill(BufferedReader.java:162)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:329)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:396)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:77)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-03-2026 14:40:06] [I] Stopped server.
+[06-03-2026 14:40:28] [I] 1 mods loaded.
+[06-03-2026 14:40:28] [I] Server loaded. Type 'help' for help.
+[06-03-2026 14:40:32] [I] Loading map...
+[06-03-2026 14:40:32] [I] Map loaded.
+[06-03-2026 14:40:32] [I] 🧠 AGENT BRIDGE: Servidor RL autónomo iniciado.
+[06-03-2026 14:40:32] [I] Opened a server on port 6567.
+[06-03-2026 14:45:21] [I] Stopped server.
+[06-03-2026 14:58:48] [I] 1 mods loaded.
+[06-03-2026 14:58:48] [I] Server loaded. Type 'help' for help.
+[06-03-2026 14:58:50] [I] Loading map...
+[06-03-2026 14:58:50] [I] Map loaded.
+[06-03-2026 14:58:50] [I] 🧠 AGENT BRIDGE: Servidor RL autónomo iniciado.
+[06-03-2026 14:58:50] [I] Opened a server on port 6567.
+[06-03-2026 15:47:33] [E] java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:328)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:287)
+	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:330)
+	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:190)
+	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:177)
+	at java.base/java.io.BufferedReader.fill(BufferedReader.java:162)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:329)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:396)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:78)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-03-2026 15:48:34] [I] Stopped server.
+[06-03-2026 15:53:56] [I] 1 mods loaded.
+[06-03-2026 15:53:56] [I] Server loaded. Type 'help' for help.
+[06-03-2026 15:53:59] [I] Loading map...
+[06-03-2026 15:53:59] [I] Map loaded.
+[06-03-2026 15:53:59] [E] java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:567)
+	at java.base/sun.nio.ch.Net.bind(Net.java:556)
+	at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:648)
+	at java.base/java.net.ServerSocket.bind(ServerSocket.java:388)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:274)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:167)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:71)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-03-2026 15:53:59] [I] Opened a server on port 6567.
+[06-03-2026 16:02:40] [I] 1 mods loaded.
+[06-03-2026 16:02:40] [I] Server loaded. Type 'help' for help.
+[06-03-2026 16:02:44] [I] Loading map...
+[06-03-2026 16:02:44] [I] Map loaded.
+[06-03-2026 16:02:44] [E] java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:567)
+	at java.base/sun.nio.ch.Net.bind(Net.java:556)
+	at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:648)
+	at java.base/java.net.ServerSocket.bind(ServerSocket.java:388)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:274)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:167)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:71)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-03-2026 16:02:44] [I] Opened a server on port 6567.
+[06-03-2026 16:16:17] [I] 1 mods loaded.
+[06-03-2026 16:16:17] [I] Server loaded. Type 'help' for help.
+[06-03-2026 16:16:28] [I] Loading map...
+[06-03-2026 16:16:29] [I] Map loaded.
+[06-03-2026 16:16:29] [I] 🧠 AGENT BRIDGE: Servidor RL autónomo iniciado.
+[06-03-2026 16:16:29] [I] Opened a server on port 6567.
+[06-03-2026 16:25:45] [E] java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:328)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:287)
+	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:330)
+	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:190)
+	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:177)
+	at java.base/java.io.BufferedReader.fill(BufferedReader.java:162)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:329)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:396)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:78)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-04-2026 08:37:12] [I] 1 mods loaded.
+[06-04-2026 08:37:12] [I] Server loaded. Type 'help' for help.
+[06-04-2026 08:37:30] [I] Loading map...
+[06-04-2026 08:37:30] [I] Map loaded.
+[06-04-2026 08:37:30] [I] 🧠 AGENT BRIDGE: Servidor RL autónomo iniciado.
+[06-04-2026 08:37:30] [I] Opened a server on port 6567.
+[06-04-2026 08:40:33] [E] java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:328)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:287)
+	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:330)
+	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:190)
+	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:177)
+	at java.base/java.io.BufferedReader.fill(BufferedReader.java:162)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:329)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:396)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:78)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-04-2026 08:43:58] [I] Kicking connection 127.0.0.1 / AAAAAAAA; Reason: customClient
+[06-04-2026 08:44:07] [I] Kicking connection 127.0.0.1 / AAAAAAAA; Reason: customClient
+[06-04-2026 08:46:18] [I] strict set to false.
+[06-04-2026 08:46:23] [I] Kicking connection 127.0.0.1 / AAAAAAAA; Reason: customClient
+[06-04-2026 08:48:39] [I] allowCustomClients set to true.
+[06-04-2026 08:48:49] [I] Prueba has disconnected. [bOBTiYSjkVcAAAAA83rZaQ==] (closed)
+[06-04-2026 08:49:20] [I] Stopped server.
+[06-04-2026 08:50:58] [I] 1 mods loaded.
+[06-04-2026 08:50:58] [I] Server loaded. Type 'help' for help.
+[06-04-2026 08:51:02] [I] allowCustomClients set to true.
+[06-04-2026 08:51:05] [I] Loading map...
+[06-04-2026 08:51:06] [I] Map loaded.
+[06-04-2026 08:51:06] [I] 🧠 AGENT BRIDGE: Servidor RL autónomo iniciado.
+[06-04-2026 08:51:06] [I] Opened a server on port 6567.
+[06-04-2026 08:51:47] [I] Prueba has disconnected. [bOBTiYSjkVcAAAAA83rZaQ==] (closed)
+[06-04-2026 08:52:08] [I] Prueba has disconnected. [bOBTiYSjkVcAAAAA83rZaQ==] (closed)
+[06-04-2026 08:54:50] [E] java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:328)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:287)
+	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:330)
+	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:190)
+	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:177)
+	at java.base/java.io.BufferedReader.fill(BufferedReader.java:162)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:329)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:396)
+	at ai.AgentBridge.lambda$iniciarServidorTCP$0(AgentBridge.java:78)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[06-04-2026 08:54:57] [E] Already hosting. Type 'stop' to stop hosting first.
+[06-04-2026 08:55:06] [I] Stopped server.
