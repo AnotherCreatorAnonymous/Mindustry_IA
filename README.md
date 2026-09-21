@@ -1,4 +1,4 @@
-# Mindustry_IA
+# Mindustry_IA 🚧 [WIP]
 
 Entorno de entrenamiento y desarrollo de una IA autónoma para Mindustry. Este proyecto implementa una arquitectura híbrida que conecta un servidor *headless* mediante un mod en Java con un agente de Python, todo orquestado y empaquetado en contenedores de Docker.
 
@@ -13,12 +13,12 @@ El sistema se divide en tres componentes principales que trabajan en conjunto:
 ## Requisitos Previos
 
 Para ejecutar este proyecto de forma local, necesitas:
-*   [Docker Desktop](https://www.docker.com/products/docker-desktop/) (con integración WSL habilitada si estás en Windows).
+*   [Docker](https://www.docker.com/products/docker-desktop/) (con integración WSL habilitada si estás en Windows).
 *   Git para clonar el repositorio.
 
-##  Instalación y Uso
+## Instalación y Uso
 
 **1. Clonar el repositorio:**
 ```bash
-git clone [https://github.com/TU-USUARIO/Mindustry_IA.git](https://github.com/TU-USUARIO/Mindustry_IA.git)
+git clone [https://github.com/AnotherCreatorAnonymous/Mindustry_IA.git](https://github.com/AnotherCreatorAnonymous/Mindustry_IA.git)
 cd Mindustry_IA
