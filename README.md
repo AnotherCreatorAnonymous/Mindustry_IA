@@ -20,5 +20,14 @@ Para ejecutar este proyecto de forma local, necesitas:
 
 **1. Clonar el repositorio:**
 ```bash
-git clone [https://github.com/AnotherCreatorAnonymous/Mindustry_IA.git](https://github.com/AnotherCreatorAnonymous/Mindustry_IA.git)
+git clone https://github.com/AnotherCreatorAnonymous/Mindustry_IA.git
 cd Mindustry_IA
+```
+
+(Nota: Agrega aquí los pasos de construcción de Docker si los tienes listos, por ejemplo: `docker build -t mindustry-ia .`)
+
+## ⚖️ Aviso Legal y Derechos de Autor
+
+Este proyecto es una herramienta de automatización e integración para el juego Mindustry, creado por Anuken (distribuido bajo la licencia GPLv3).
+
+Todos los derechos sobre el diseño del juego, mecánicas y código base original pertenecen a sus respectivos creadores. Este repositorio contiene exclusivamente el código de la integración (puente Python-Java y containerización) desarrollado de forma independiente con fines educativos y de investigación.
