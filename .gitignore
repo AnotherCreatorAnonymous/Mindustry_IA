@@ -1,0 +1,52 @@
+# Archivos de editores temporales
+*.swp
+*.swo
+
+# Entornos y Caché de Python
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Compilación de Java y Gradle
+.gradle/
+build/
+out/
+Agent_Mod/build/
+Agent_Mod/.gradle/
+
+# Archivos pesados y binarios
+*.jar
+*.zip
+
+# Carpetas de entrenamiento local
+IA_Entrenamiento/logs/
+IA_Entrenamiento/modelos/
+
+# Configuraciones locales de IDEs
+.vscode/
+.idea/
+
+# --- AÑADIDOS PARA WINDOWS Y SEGURIDAD ---
+
+# Archivos de sistema de Windows
+Thumbs.db
+Thumbs.db:encryptable
+desktop.ini
+
+# Variables de entorno y secretos (Vital para Docker/Python)
+.env
+*.env
+
+# --- COMPILADOS EXTRAS Y EJECUCIÓN ---
+
+# Clases sueltas de Java
+*.class
+
+# Logs generales del sistema o del servidor
+*.log
+
+# Carpetas generadas automáticamente por el servidor de Mindustry
+saves/
+config/
+mods/

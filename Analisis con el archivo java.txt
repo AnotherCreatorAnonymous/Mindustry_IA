@@ -1,0 +1,58 @@
+Perfecto, ahora tengo los 4 archivos. El Java confirma todo. Déjame hacer el análisis definitivo:Ahora genero el archivo corregido completo:---
+
+## Diagnóstico definitivo — los 4 bugs reales
+
+Tu hipótesis era correcta en la dirección, pero incompleta. No era uno sino **cuatro problemas superpuestos**, dos de los cuales son lo que congela el dron:
+
+### Bug 1 — `volatile` ausente (silencioso y devastador)
+
+Las variables `targetWorldX`, `targetWorldY` e `isNavigating` son escritas desde el hilo TCP y leídas desde el `Trigger.update` del game loop. Sin `volatile`, la JVM tiene libertad para cachear esos valores por hilo. El Trigger.update puede estar viendo siempre `isNavigating = false` aunque el hilo TCP haya escrito `true` hace milisegundos. El dron recibe la velocidad correcta desde el Trigger, pero nunca sabe que hay un objetivo nuevo.
+
+**Fix:** Declarar las tres como `volatile`:
+```java
+private volatile float targetWorldX = -1;
+private volatile float targetWorldY = -1;
+private volatile boolean isNavigating = false;
+```
+
+### Bug 2 — `u.set()` y `u.vel.set()` en hilo incorrecto (el que congela el reset)
+
+En el bloque `"reset"`, las llamadas a `u.set(randomX, randomY)` y `u.vel.set(0,0)` ocurren directamente en el hilo TCP. Mindustry/libGDX **no es thread-safe**: el motor ignora silenciosamente las mutaciones de entidades que no vienen del game loop. El dron no se mueve porque los cambios de posición nunca llegan al motor. La solución es envolver todo en `Core.app.post()`.
+
+### Bug 3 — Race condition en la lectura de `u.x` / `u.y` durante `"move"`
+
+```java
+// Código original — en el hilo TCP:
+targetWorldX = u.x + json.getInt("x", 0) * 8;  // u.x se lee fuera del game loop
+```
+
+El game loop puede estar actualizando `u.x` al mismo tiempo que el hilo TCP lo lee. El fix es mover esa lectura también dentro de `Core.app.post()`.
+
+### Bug 4 — `radarSimple()` itera `Vars.world` desde el hilo TCP
+
+El radar escanea el mapa entero (`Vars.world.tiles`) desde el hilo TCP. Si el mapa se está actualizando (carga de mundo, eventos de juego), esto puede lanzar un `ConcurrentModificationException` que mata silenciosamente la conexión sin que Python lo vea. La solución es que `radarSimple()` también corra dentro del `Core.app.post()`.
+
+---
+
+### El patrón `CountDownLatch` que apliqué
+
+El reto es que después de delegar al game loop necesitas **esperar** la respuesta antes de enviarla por el socket. El `CountDownLatch(1)` resuelve eso elegantemente:
+
+```
+Hilo TCP                    Game loop (Trigger.update frame N+1)
+    │                               │
+    ├── Core.app.post(lambda) ──────►│
+    │                               ├── u.set() [seguro]
+    │                               ├── construirObservacion()
+    │                               ├── respuesta[0] = json
+    │                               └── latch.countDown()
+    │
+    ├── latch.await(2s) ←─────────── (desbloquea)
+    └── out.println(respuesta[0])
+```
+
+El timeout de 2 segundos es un seguro de emergencia: si el game loop tarda más (lag extremo, pantalla de carga), el hilo TCP no se bloquea indefinidamente y responde con el mensaje de error que Python puede manejar.
+
+### Un cambio adicional que hice al reset
+
+El reset original teletransportaba **relativo** a la posición actual del dron (`u.x + random(-300, 300)`). Si el dron estaba en un borde del mapa, podía quedar fuera de los límites. Lo cambié a coordenadas **absolutas aleatorias** dentro del mapa con un margen de 100px a los bordes, lo cual es más robusto para el entrenamiento largo.

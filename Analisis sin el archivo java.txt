@@ -1,0 +1,154 @@
+Tengo los 3 Python del zip anterior. Necesito ver el Java. ¿Puedes pegarlo directamente aquí?Perfecto, tengo los 4 archivos actualizados leídos. Ahora el análisis completo:Tengo todo el contexto. Aquí va la auditoría completa:---
+
+## Auditoría completa
+
+### BUG 1 — Crítico (causa el dron congelado): Hilo incorrecto en Java ✅ Tu hipótesis es correcta
+
+Tu hipótesis es 100% correcta. En Mindustry, el motor del juego tiene un **game loop principal** que corre en su propio hilo. Cuando tu hilo TCP hace `u.set(randomX, randomY)` o modifica `unit.vel` directamente, está tocando objetos del motor desde un hilo externo. Mindustry usa libGDX por debajo, que no es thread-safe: el motor simplemente ignora o sobrescribe esos cambios en su próximo tick sin lanzar ninguna excepción. Por eso Python no ve errores pero el dron no se mueve.
+
+**La corrección exacta** es delegar toda modificación física a `Core.app.post()`, que encola el trabajo para ejecutarse en el siguiente frame del game loop:
+
+```java
+// ❌ CÓDIGO ACTUAL (en el hilo TCP) — motor lo ignora silenciosamente
+case "reset":
+    float rx = ...; float ry = ...;
+    u.set(rx, ry);
+    u.vel.set(0, 0);
+    isNavigating = false;
+    break;
+
+case "move":
+    targetWorldX = ...;
+    targetWorldY = ...;
+    isNavigating = true;
+    break;
+
+// ✅ CORRECCIÓN — envuelve TODO en Core.app.post
+case "reset":
+    final float finalRx = rx;
+    final float finalRy = ry;
+    Core.app.post(() -> {
+        Unit u = getControllableUnit();
+        if (u != null) {
+            u.set(finalRx, finalRy);
+            u.vel.set(0, 0);
+            isNavigating = false;
+        }
+    });
+    break;
+
+case "move":
+    final float fx = targetX;
+    final float fy = targetY;
+    Core.app.post(() -> {
+        targetWorldX = fx;
+        targetWorldY = fy;
+        isNavigating = true;
+    });
+    break;
+```
+
+La respuesta JSON al cliente también debe salir **después** de que el post se ejecute, lo que implica un mecanismo de sincronización. La forma más limpia es usar un `CountDownLatch`:
+
+```java
+CountDownLatch latch = new CountDownLatch(1);
+final float[] result = new float[1]; // para pasar datos de vuelta
+
+Core.app.post(() -> {
+    Unit u = getControllableUnit();
+    if (u != null) {
+        u.set(finalRx, finalRy);
+        u.vel.set(0, 0);
+        isNavigating = false;
+        result[0] = Mathf.dst(u.x, u.y, oreX * 8f, oreY * 8f);
+    }
+    latch.countDown();
+});
+
+latch.await(1, TimeUnit.SECONDS); // espera máximo 1 segundo
+// Ahora puedes construir y enviar el JSON con datos reales
+```
+
+---
+
+### BUG 2 — Media severidad: `recv(4096)` sin delimitador de línea
+
+En `_recibir_estado()` usas `socket.recv(4096)` directamente. TCP es un stream, no un protocolo de mensajes. Si Java responde dos JSONs seguidos rápido (puede pasar en reset+primer step), Python recibe ambos concatenados en un mismo `recv()`, lo parsea el primero y tira el segundo. Tu parche actual con `split("\n")[0]` es correcto pero incompleto — si el split produce una línea vacía o llega un JSON partido a la mitad, explota.
+
+**La corrección es usar un buffer de línea real:**
+
+```python
+def _conectar(self):
+    if self.socket is None:
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.settimeout(5.0)
+        self.socket.connect((self.host, self.port))
+        # Buffer de línea — lee exactamente hasta \n cada vez
+        self._buffer = self.socket.makefile('r', encoding='utf-8')
+        print("✅ Conexión TCP establecida.")
+
+def _recibir_estado(self):
+    try:
+        linea = self._buffer.readline()  # bloquea hasta \n, siempre un JSON completo
+        if not linea:
+            raise socket.error("Conexión cerrada por Java.")
+        estado = json.loads(linea.strip())
+        # ... resto del procesamiento igual
+```
+
+Y en `close()`:
+```python
+def close(self):
+    if hasattr(self, '_buffer') and self._buffer:
+        try: self._buffer.close()
+        except: pass
+        self._buffer = None
+    if self.socket:
+        try: self.socket.close()
+        except: pass
+        self.socket = None
+```
+
+---
+
+### BUG 3 — Menor: Lógica de reward con caso muerto
+
+```python
+# CÓDIGO ACTUAL
+diferencia = self.distancia_anterior - distancia_real
+reward = diferencia * 2.0
+
+if diferencia <= 0:
+    reward = -0.5      # sobreescribe el cálculo anterior
+
+terminated = bool(distancia_real < 12.0 and distancia_real != -1)
+if terminated:
+    reward = 10.0      # sobreescribe todo lo anterior
+```
+
+El problema: si el dron llega al cobre **pero en ese mismo step la diferencia es <= 0** (llegó por inercia pasándose ligeramente), primero asigna `-0.5` y luego `+10.0`. El resultado final es correcto, pero el orden crea confusión y el clip final de `np.clip(reward, -10, 10)` no afecta porque 10.0 ya está en rango. No es el bug que congela el dron pero clarifica la intención:
+
+```python
+# ✅ Orden correcto: terminated tiene prioridad absoluta
+terminated = bool(distancia_real < 12.0 and distancia_real != -1)
+truncated  = bool(self.pasos_actuales >= self.max_pasos)
+
+if terminated:
+    reward = 10.0
+elif diferencia > 0:
+    reward = float(np.clip(diferencia * 2.0, -10.0, 10.0))
+else:
+    reward = -0.5
+```
+
+---
+
+### Lo que está bien y no tocar
+
+El código Python en general está sólido. El `DummyVecEnv([lambda: Monitor(MindustryEnv())])` en `Entrenar_Agente.py` es correcto. Los hiperparámetros de DQN (`buffer_size=100_000`, `learning_starts=10_000`, `exploration_fraction=0.6`) son razonables para este entorno de socket lento. El clipping de observaciones a `[-1000, 1000]` y la normalización `/500.0` son correctos. El `time.sleep(0.1)` post-envío en `step()` es necesario dado el delay físico del dron.
+
+---
+
+### Resumen de prioridad
+
+El único fix que desbloquea el dron es el **BUG 1**. Una vez que Java envuelva las mutaciones físicas en `Core.app.post()`, el dron debería responder tanto al teletransporte de reset como a los comandos de movimiento. Los otros dos son mejoras de robustez que evitarán crashes en sesiones largas de entrenamiento.
